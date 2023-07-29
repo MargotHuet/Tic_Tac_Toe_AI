@@ -15,9 +15,10 @@ title_label = ttk.Label(master = window, text = 'Tic Tac Toe game', font = 'Cali
 # Fonction des boutons au clic
 def buttonClick(b) :
     global player
-    if 
+    
 
 # Création des boutons (9)
+
 
 b1 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: tk.buttonClick(b1))
 b2 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: tk.buttonClick(b2))
