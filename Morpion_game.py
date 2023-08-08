@@ -9,12 +9,12 @@ from tkinter import messagebox
 
 # Window
 window = tk.Tk()
-window.geometry('400x400')
+window.geometry('800x800')
 window.title('Jeu du Morpion')
 window.resizable(height=False, width=False)
 
 # Title
-title_label = ttk.Label(master = window, text = 'Tic Tac Toe game', font = 'Calibri 24')
+title_label = ttk.Label(master = window, text ='Tic Tac Toe game', font = 'Calibri 24')
 
 ###############################################
 ################ -- Game  -- ##################
@@ -80,57 +80,57 @@ def checkWin() :
         messagebox.showinfo("Bravo , c'est gagné !")
 
       # Victoire pour la player O
-    if b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O" : # Victoire à l'horizontale 
-        b1.config(bg="green") # Colore les cases de la grille en vert
-        b2.config(bg="green")
-        b3.config(bg="green")
-        winner = True 
-        messagebox.showinfo("Bravo c'est gagné !")
-    elif b4["text"] == "0" and b5["text"] == "0" and b6["text"] == "0" :
-        b4.config(bg="green")
-        b5.config(bg="green")
-        b6.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo c'est gagné!")
-    elif b7["text"] == "0" and b8["text"] == "0" and b9["text"] == "0" :
-        b7.config(bg="green")
-        b8.config(bg="green")
-        b9.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné")
-    elif b1["text"] == "0" and b4["text"] == "0" and b7["text"] == "0" : # Victoire à la verticale
-        b1.config(bg="green")
-        b4.config(bg="green")
-        b7.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné !")
-    elif b2["text"] == "0" and b5["text"] == "0" and b8["text"] == "0" :
-        b1.config(bg="green")
-        b1.config(bg="green")
-        b1.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné!")
-    elif b3["text"] == "0" and b6["text"] == "0" and b9["text"] == "0" :
-        b1.config(bg="green")
-        b1.config(bg="green")
-        b1.config(bg="green")
-        winner = True 
-        messagebox.showinfo("Bravo, c'est gagné!")
-    elif b1["text"] == "0" and b5["text"] == "0" and b9["text"] == "0" : # Victoire en diagonale 
-        b1.config(bg="green")
-        b5.config(bg="green")
-        b9.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné !")
-    elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O" :
-        b3.config(bg="green")
-        b5.config(bg="green")
-        b7.config(bg="green")
-        winner = True 
-        messagebox.showinfo("Bravo , c'est gagné !")
+        if b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O" : # Victoire à l'horizontale 
+             b1.config(bg="green") # Colore les cases de la grille en vert
+             b2.config(bg="green")
+             b3.config(bg="green")
+             winner = True 
+             messagebox.showinfo("Bravo c'est gagné !")
+        elif b4["text"] == "O" and b5["text"] == "O" and b6["text"] == "O" :
+             b4.config(bg="green")
+             b5.config(bg="green")
+             b6.config(bg="green")
+             winner = True
+             messagebox.showinfo("Bravo c'est gagné!")
+        elif b7["text"] == "O" and b8["text"] == "O" and b9["text"] == "O" :
+            b7.config(bg="green")
+            b8.config(bg="green")
+            b9.config(bg="green")
+            winner = True
+            messagebox.showinfo("Bravo, c'est gagné")
+        elif b1["text"] == "O" and b4["text"] == "O" and b7["text"] == "O" : # Victoire à la verticale
+            b1.config(bg="green")
+            b4.config(bg="green")
+            b7.config(bg="green")
+            winner = True
+            messagebox.showinfo("Bravo, c'est gagné !")
+        elif b2["text"] == "O" and b5["text"] == "O" and b8["text"] == "O" :
+            b1.config(bg="green")
+            b1.config(bg="green")
+            b1.config(bg="green")
+            winner = True
+            messagebox.showinfo("Bravo, c'est gagné!")
+        elif b3["text"] == "O" and b6["text"] == "O" and b9["text"] == "O" :
+            b1.config(bg="green")
+            b1.config(bg="green")
+            b1.config(bg="green")
+            winner = True 
+            messagebox.showinfo("Bravo, c'est gagné!")
+        elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O" : # Victoire en diagonale 
+            b1.config(bg="green")
+            b5.config(bg="green")
+            b9.config(bg="green")
+            winner = True
+            messagebox.showinfo("Bravo, c'est gagné !")
+        elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O" :
+            b3.config(bg="green")
+            b5.config(bg="green")
+            b7.config(bg="green")
+            winner = True 
+            messagebox.showinfo("Bravo , c'est gagné !")
 
-    if count == 9 and winner == False :
-        messagebox.showinfo("Match nul")
+        if count == 9 and winner == False :
+            messagebox.showinfo("Match nul")
 
 
 
