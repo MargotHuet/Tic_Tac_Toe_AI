@@ -1,185 +1,127 @@
-import tkinter as tk
-import ttkbootstrap as ttk
-from tkinter import ttk
-from tkinter import messagebox
+import random
+from tkinter import *
 
-###############################################
-############ -- G U Interface  -- #############
-###############################################
+def next_turn(row, column):
+    
+    global player 
 
-# Window
-window = tk.Tk()
-window.geometry('800x800')
-window.title('Jeu du Morpion')
-window.resizable(height=False, width=False)
+    if buttons[row][column]['text'] == "" and check_winner() is False :
+        
+        if player == players[0]:
 
-# Title
-title_label = ttk.Label(master = window, text ='Tic Tac Toe game', font = 'Calibri 24')
+            buttons[row][column]['text'] = player 
 
-###############################################
-################ -- Game  -- ##################
-###############################################
+            if check_winner() is False:
+                player = players[1]
+                label.config(text=(players[1] + " turn"))
+            
+            elif check_winner is True: 
+                label.config(text=(players[0] + " wins"))
 
-clicked = True
-# Compteur de cases aucune case n'est gagnante. 
-count = 0
+            elif check_winner == "Tie":
+                label.config(text=("It's a tie !"))
 
-# Fonction pour vérifier si un joueur à gagné la partie.
+        else:
 
-def checkWin() :
-    global winner 
-    winner = False
-    # Victoire pour la player X
-    if b1["text"] == "X" and b2["text"] == "X" and b3["text"] == "X" : # Victoire à l'horizontale 
-        b1.config(bg="green") # Colore les cases de la grille en vert
-        b2.config(bg="green")
-        b3.config(bg="green")
-        winner = True 
-        messagebox.showinfo("Bravo c'est gagné !")
-    elif b4["text"] == "X" and b5["text"] == "X" and b6["text"] == "X" :
-        b4.config(bg="green")
-        b5.config(bg="green")
-        b6.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo c'est gagné!")
-    elif b7["text"] == "X" and b8["text"] == "X" and b9["text"] == "X" :
-        b7.config(bg="green")
-        b8.config(bg="green")
-        b9.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné")
-    elif b1["text"] == "X" and b4["text"] == "X" and b7["text"] == "X" : # Victoire à la verticale
-        b1.config(bg="green")
-        b4.config(bg="green")
-        b7.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné !")
-    elif b2["text"] == "X" and b5["text"] == "X" and b8["text"] == "X" :
-        b1.config(bg="green")
-        b1.config(bg="green")
-        b1.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné!")
-    elif b3["text"] == "X" and b6["text"] == "X" and b9["text"] == "X" :
-        b1.config(bg="green")
-        b1.config(bg="green")
-        b1.config(bg="green")
-        winner = True 
-        messagebox.showinfo("Bravo, c'est gagné!")
-    elif b1["text"] == "X" and b5["text"] == "X" and b9["text"] == "X" : # Victoire en diagonale 
-        b1.config(bg="green")
-        b5.config(bg="green")
-        b9.config(bg="green")
-        winner = True
-        messagebox.showinfo("Bravo, c'est gagné !")
-    elif b3["text"] == "X" and b5["text"] == "X" and b7["text"] == "X" :
-        b3.config(bg="green")
-        b5.config(bg="green")
-        b7.config(bg="green")
-        winner = True 
-        messagebox.showinfo("Bravo , c'est gagné !")
+                buttons[row][column]['text'] = player 
 
-      # Victoire pour la player O
-        if b1["text"] == "O" and b2["text"] == "O" and b3["text"] == "O" : # Victoire à l'horizontale 
-             b1.config(bg="green") # Colore les cases de la grille en vert
-             b2.config(bg="green")
-             b3.config(bg="green")
-             winner = True 
-             messagebox.showinfo("Bravo c'est gagné !")
-        elif b4["text"] == "O" and b5["text"] == "O" and b6["text"] == "O" :
-             b4.config(bg="green")
-             b5.config(bg="green")
-             b6.config(bg="green")
-             winner = True
-             messagebox.showinfo("Bravo c'est gagné!")
-        elif b7["text"] == "O" and b8["text"] == "O" and b9["text"] == "O" :
-            b7.config(bg="green")
-            b8.config(bg="green")
-            b9.config(bg="green")
-            winner = True
-            messagebox.showinfo("Bravo, c'est gagné")
-        elif b1["text"] == "O" and b4["text"] == "O" and b7["text"] == "O" : # Victoire à la verticale
-            b1.config(bg="green")
-            b4.config(bg="green")
-            b7.config(bg="green")
-            winner = True
-            messagebox.showinfo("Bravo, c'est gagné !")
-        elif b2["text"] == "O" and b5["text"] == "O" and b8["text"] == "O" :
-            b1.config(bg="green")
-            b1.config(bg="green")
-            b1.config(bg="green")
-            winner = True
-            messagebox.showinfo("Bravo, c'est gagné!")
-        elif b3["text"] == "O" and b6["text"] == "O" and b9["text"] == "O" :
-            b1.config(bg="green")
-            b1.config(bg="green")
-            b1.config(bg="green")
-            winner = True 
-            messagebox.showinfo("Bravo, c'est gagné!")
-        elif b1["text"] == "O" and b5["text"] == "O" and b9["text"] == "O" : # Victoire en diagonale 
-            b1.config(bg="green")
-            b5.config(bg="green")
-            b9.config(bg="green")
-            winner = True
-            messagebox.showinfo("Bravo, c'est gagné !")
-        elif b3["text"] == "O" and b5["text"] == "O" and b7["text"] == "O" :
-            b3.config(bg="green")
-            b5.config(bg="green")
-            b7.config(bg="green")
-            winner = True 
-            messagebox.showinfo("Bravo , c'est gagné !")
+                if check_winner() is False:
+                    player = players[0]
+                    label.config(text=(players[0] + " turn"))
+            
+                elif check_winner is True: 
+                    label.config(text=(players[1] + " wins"))
 
-        if count == 9 and winner == False :
-            messagebox.showinfo("Match nul")
+                elif check_winner == "Tie":
+                    label.config(text=("It's a tie !"))
 
 
+def check_winner():
+    
+    for row in range(3):
+        if buttons[row][0]['text'] == buttons[row][1]['text'] == buttons[row][2]['text'] != "":
+            buttons[row][0].config(bg="green")
+            buttons[row][1].config(bg="green")
+            buttons[row][2].config(bg="green")
+            return True
+        
+    for column in range(3):
+        if buttons[0][column]['text'] == buttons[1][column]['text'] == buttons[2][column]['text'] != "":
+            buttons[0][column].config(bg="green")
+            buttons[1][column].config(bg="green")
+            buttons[2][column].config(bg="green")
+            return True
+        
+    if buttons[0][0]['text'] == buttons[1][1]['text'] == buttons[2][2]['text'] != "":
+            buttons[0][0].config(bg="green")
+            buttons[1][1].config(bg="green")
+            buttons[2][2].config(bg="green")
+            return True
 
-# Fonction des boutons au clic
-def buttonClick(b) :
-    global clicked, count 
-    if b["text"] == " " and clicked == True :
-        b["text"] = "X"
-        clicked = False
-        count += 1
-        checkWin()
-    elif b["text"] == " " and clicked == False :   
-        b["text"] = "O"
-        clicked = True
-        count += 1
-        checkWin()
-    else :
-        messagebox.showinfo("Case déjà remplie")
-     
+    elif buttons[0][2]['text'] == buttons[1][1]['text'] == buttons[2][0]['text'] != "":
+            buttons[0][2].config(bg="green")
+            buttons[1][1].config(bg="green")
+            buttons[2][0].config(bg="green")
+            return True
+    
+    elif empty_spaces() is False:
+        for row in range(3):
+            for column in range(3):
+                buttons[row][column].config(bg="yellow ")
+        return "It's a tie !"
+    
+    else:
+        return False
 
 
-# Création des boutons (9)
+def empty_spaces():
+    
+    spaces = 9
 
-b1 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b1))
-b2 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b2))
-b3 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b3))
+    for row in range(3):
+        for column in range(3):
+            if buttons[row][column]['text'] != "":
+                spaces -= 1
 
-b4 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b4))
-b5 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b5))
-b6 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b6))
+    if spaces == 0:
+        return False
+    
+    else:
+        return True
 
-b7 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b7))
-b8 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b8))
-b9 = tk.Button(window, text=" ", font=("Helvetica",20), height=3, width=6, bg="SystemButtonFace", command=lambda: buttonClick(b9))
+def new_game():
+    
+    global player
+
+    player = random.choice(players)
+
+    label.config(text=player+" turn")
+
+    for row in range(3):
+        for column in range(3):
+            buttons[row][column].config(text="", bg="#F0F0FO")
 
 
-# Création de la grille de jeu avec les colonnes (9)
+window = Tk()
+window.title("Tic-tac-toe")
+players = ["X","O"]
+player = random.choice(players)
+buttons = [[0,0,0],
+           [0,0,0],
+           [0,0,0]]
 
-b1.grid(row=0, column=0)
-b2.grid(row=0, column=1)
-b3.grid(row=0, column=2)
+label = Label(text= player + " turn", font=('consolas', 40))
+label.pack(side="top")
 
-b4.grid(row=1, column=0)
-b5.grid(row=1, column=1)
-b6.grid(row=1, column=2)
+reset_button = Button(text="restart", font=('consolas', 20), command=new_game)
+reset_button.pack(side="top")
 
-b7.grid(row=2, column=0)
-b8.grid(row=2, column=1)
-b9.grid(row=2, column=2)
+frame = Frame(window)
+frame.pack()
 
-# Window run
+for row in range(3):
+    for column in range(3):
+        buttons[row][column] = Button(frame, text="", font=('consolas', 40), width=5, height=2, command=lambda row=row, column=column : next_turn(row, column))
+        buttons[row][column].grid(row=row, column=column)
+
 window.mainloop()
